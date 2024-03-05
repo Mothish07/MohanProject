@@ -1,0 +1,164 @@
+{%extends "Donate/layouts/main.html"%}
+{%load static%}
+
+{%block title%}
+    Register
+{%endblock title%}
+
+{%block stylesheet%}
+<style>
+  /* Form Styles */
+  .form-title {
+      color: var(--oxford-blue-1);
+      font-family: var(--ff-poppins);
+      font-size: 3.4rem;
+      font-weight: var(--fw-800);
+      text-align: center;
+      margin-bottom: 20px;
+  }
+
+  .form-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .form-field {
+    flex: 0 0 48%;
+    margin-bottom: 20px;
+  }
+
+  .form-field label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .form-field input,
+  .form-field select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .form-field input[type="submit"] {
+    background-color: #216aca;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  .form-field input[type="submit"]:hover {
+    background-color: #060952;
+  }
+  #home{
+    background-image: url("{% static 'images/hero-bg.png'%}");
+    }
+</style>
+
+{%endblock stylesheet%}
+  
+
+{%block content%}
+  <main>
+    <article>
+        <section class="section hero" id="home"  aria-label="hero">
+            <!--Registration Form -->
+            <div class="container">
+              <div class="form-container">
+                <div class="form-title">Register</div>
+                 <!-- Alert Message-->
+                 {% for message in messages %}
+                    <h6>{{message}}</h6>
+                     {% endfor %}
+                <form action="{% url 'register' %}" method="POST">
+                  {% csrf_token %}
+                  <!-- Login Information -->
+                  <div class="form-section">
+                    <div class="form-field">
+                      <label>FULL NAME</label>
+                      <input type="text" id="fullName" name="fullName" required>
+                    </div>
+                    <div class="form-field">
+                      <label >MOBILE NUMBER</label>
+                      <input type="text" id="mobile" name="mobile" required>
+                    </div>
+                    <div class="form-field">
+                      <label>EMAIL</label>
+                      <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-field">
+                      <label>PASSWORD</label>
+                      <input type="password" id="password" name="password" required>
+                    </div>
+                  </div>
+                  <!-- Donor Information -->
+                  <div class="form-section">
+                    <div class="form-field">
+                      <label>BLOOD GROUP</label>
+                      <select id="bloodGroup" name="bloodGroup" required>
+                        <option value="" disabled selected>Select Blood Group</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                      </select>
+                    </div>
+                    <div class="form-field">
+                      <label>BIRTH DATE</label>
+                      <input type="date" id="birthDate" name="birthDate" required>
+                    </div>
+                    <div class="form-field">
+                      <label for="gender">GENDER</label>
+                      <select id="gender" name="gender" required>
+                        <option value="" disabled selected>Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </div>
+                    <div class="form-field">
+                      <label>WEIGHT</label>
+                      <input type="text" id="weight" name="weight" required>
+                    </div>
+                  </div>
+                  <!-- Contact Information -->
+                  <div class="form-section">
+                    <div class="form-field">
+                      <label>STATE</label>
+                      <input type="text" id="state" name="state" required>
+                    </div>
+                    <div class="form-field">
+                      <label>DISTRICT</label>
+                      <input type="text" id="district" name="district" required>
+                    </div>
+                    <div class="form-field">
+                      <label>ZIP CODE</label>
+                      <input type="text" id="zipCode" name="zipCode" required>
+                    </div>
+                    <div class="form-field">
+                      <label>AREA</label>
+                      <input type="text" id="area" name="area" required>
+                    </div>
+                  </div>
+                  <div class="form-field">
+                      <label>Landmarks</label>
+                      <input type="text" id="landmarks" name="landmarks" required>
+                    </div>
+                  <button type="submit" class="btn">Register</button>
+                </form>
+                <div class="form-title">Already Registered? <u><a href="{% url 'searchUser' %}" style="display: inline; color: #216aca;" onmouseover="this.style.color='#03d9ff'" onmouseout="this.style.color='#216aca'">Search User?</a></u></div>
+              </div>
+              <figure class="hero-banner">
+                <img src="{% static 'images/bg.svg' %}" width="587" height="839" alt="hero banner" class="w-100">
+                <center><h2>New Here ?</h2></center>
+              </figure>
+            </div>
+          </section>
+
+{%endblock content%}

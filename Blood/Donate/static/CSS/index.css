@@ -1,0 +1,4 @@
+#home{
+    background-image: url("{%static 'images/hero-bg.png' %}");
+    margin: 0%;
+}
